@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- RMI -->
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+
+        <property name="serviceName" value="CurrencyExchange"/>
+        <property name="service" ref="currencyExchange"/>
+        <property name="serviceInterface" value="service.CurrencyExchangeService"/>
+        <property name="registryPort" value="1199"/>
+    </bean>
+
+    <!-- Hessian -->
+    <bean name="/currencyExchangeHessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="service" ref="currencyExchange"/>
+        <property name="serviceInterface" value="service.CurrencyExchangeService"/>
+    </bean>
+
+    <!-- Http invoker-->
+    <bean name="/currencyExchangeHttp" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="currencyExchange"/>
+        <property name="serviceInterface" value="service.CurrencyExchangeService"/>
+    </bean>
+
+</beans>

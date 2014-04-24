@@ -1,0 +1,14 @@
+apply plugin: 'spring-boot'
+
+dependencies {
+    compile project(':broker-model')
+    compile("org.springframework.boot:spring-boot-starter")
+    compile 'org.springframework:spring-context'
+    compile 'org.springframework:spring-web'
+    compile 'com.caucho:hessian:4.0.33'
+    compile 'com.fasterxml.jackson.core:jackson-databind'
+
+    testCompile 'junit:junit'
+
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+}

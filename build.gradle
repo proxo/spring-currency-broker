@@ -1,0 +1,40 @@
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE")
+    }
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    version = '1.0'
+    group = "pl.pmsoft.${githubProjectName}"
+
+    repositories {
+        mavenLocal()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
