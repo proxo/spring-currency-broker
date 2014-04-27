@@ -1,5 +1,8 @@
 apply plugin: 'jetty'
 apply plugin: 'spring-boot'
+ext {
+    cxfVersion = '2.7.11'
+}
 
 jar {
     baseName = 'currency-broker-server'
@@ -13,6 +16,8 @@ dependencies {
     compile 'org.springframework:spring-webmvc'
     compile 'org.springframework:spring-web'
     compile 'com.caucho:hessian:4.0.33'
+    compile 'org.apache.cxf:cxf-rt-frontend-jaxws:2.7.11'
+    compile 'org.apache.cxf:cxf-rt-transports-http:2.7.11'
 
     compile 'com.fasterxml.jackson.core:jackson-databind'
     // tag::jetty[]

@@ -1,8 +1,10 @@
 package app;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,5 +24,10 @@ public class BrokerConfiguration {
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(BrokerConfiguration.class, args);
+    }
+
+    @Bean
+    ServletRegistrationBean cxfServlet() {
+        return new ServletRegistrationBean(new CXFServlet(), "/ws/*");
     }
 } 
