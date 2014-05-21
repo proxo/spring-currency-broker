@@ -12,20 +12,25 @@
 
     <!-- Hessian -->
     <bean id="hessianBrokerServer" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
-        <property name="serviceUrl" value="http://localhost:8080/currencyExchangeHessian"/>
+        <property name="serviceUrl" value="http://localhost:9000/currencyExchangeHessian"/>
         <property name="serviceInterface" value="service.CurrencyExchangeService"/>
     </bean>
 
     <!-- Http invoker-->
     <bean id="httpBrokerServer" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-        <property name="serviceUrl" value="http://localhost:8080/currencyExchangeHttp"/>
+        <property name="serviceUrl" value="http://localhost:9000/currencyExchangeHttp"/>
         <property name="serviceInterface" value="service.CurrencyExchangeService"/>
     </bean>
 
     <!-- REST client -->
     <bean id="restBrokerServer" class="service.RestCurrencyExchangeClient">
-        <property name="baseUrl" value="http://localhost:8080/broker"/>
+        <property name="baseUrl" value="http://localhost:9000/broker"/>
     </bean>
+
+    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+        <property name="baseAddress" value="http://localhost:9000/"/>
+    </bean>
+
 
     <bean id="serviceTest" class="service.BrokerServiceTester">
         <constructor-arg>
@@ -36,6 +41,7 @@
                 <entry key="rest" value-ref="restBrokerServer"/>
             </map>
         </constructor-arg>
+        
         <!-- 100 to 10 millions -->
         <property name="items">
             <list>

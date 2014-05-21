@@ -1,7 +1,9 @@
 apply plugin: 'jetty'
 apply plugin: 'spring-boot'
+
 ext {
     cxfVersion = '2.7.11'
+    metricsVersion = '3.0.2'
 }
 
 jar {
@@ -16,6 +18,7 @@ dependencies {
     compile 'org.springframework:spring-webmvc'
     compile 'org.springframework:spring-web'
     compile 'com.caucho:hessian:4.0.33'
+
     compile 'org.apache.cxf:cxf-rt-frontend-jaxws:2.7.11'
     compile 'org.apache.cxf:cxf-rt-transports-http:2.7.11'
 
@@ -30,5 +33,17 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     testCompile 'junit:junit'
+
     compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'com.codahale.metrics:metrics-core:3.0.2'
+}
+
+run {
+    systemProperty "com.sun.management.jmxremote", ""
+    systemProperty "com.sun.management.jmxremote.port", "9999"
+    systemProperty "com.sun.management.jmxremote.authenticate", "false"
+    systemProperty "com.sun.management.jmxremote.ssl", "false"
+    // jvm properties
+    jvmArgs "-Xmx1524m","-verbose:gc","-Xms1024m"
+    //    jvmArgs "-XX:+UnlockCommercialFeatures", "-XX:+FlightRecorder"
 }

@@ -60,7 +60,8 @@ public class BrokerServiceTester implements Runnable {
         long startTime = System.nanoTime();
         service.exchangeCurrencies(req);
         long endTime = System.nanoTime() - startTime;
-        logger.info("Called service with #{} items, took time: {} ms", cnt, endTime / 1000_000);
+        long endMsTime = endTime / 1000_000;
+        logger.info("Called service with #{} items, took time: {} ms, on avg: {} ns", cnt, endMsTime, (endTime / cnt));
     }
 
     public List<Integer> getItems() {

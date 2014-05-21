@@ -6,6 +6,12 @@ import java.util.List;
 
 /**
  * Created by pmasko on 09.04.2014.
+ *
+ * ## The main currency exchange object
+ *
+ * ```java
+ * CurrencyExchange(brokerId) // initialize currency object
+ * ```
  */
 public class CurrencyExchange implements Serializable {
     private String brokerId;

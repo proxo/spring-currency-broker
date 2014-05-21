@@ -39,6 +39,7 @@ public class BrokerClientConfiguration {
         BrokerServiceTester serviceTester = run.getBean(BrokerServiceTester.class);
         logger.info("Running test service");
 
+
         serviceTester.run();
     }
 
